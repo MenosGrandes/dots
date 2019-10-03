@@ -1,0 +1,38 @@
+#update system
+sudo dnf update -y
+#install CUDA
+
+#install BOOST CPP
+wget https://dl.bintray.com/boostorg/release/1.71.0/source/boost_1_71_0.tar.bz2
+tar -xjf boost_1_71_0.tar.bz2
+cd boost_1_71_0/
+sudo ./b2 -a -q install --with=all -j$(nproc)
+LIBREGEX=/usr/local/lib/libboost_regex.a
+if test -f "$LIBREGEX"; then
+    echo "BOOST INSTALLED"
+fi
+
+#python
+sudo dnf -y install python3 python3-pip python3-testresources-1.0.0-10.fc30.noarch
+pip3 install --user Cython
+#https://github.com/sagemath/cysignals/issues/80
+CFLAGS="-Wp,-U_FORTIFY_SOURCE" pip3 install --user cysignals
+pip3 install --user pip numpy wheel numpy scipy matplotlib
+pip3 install --user scikit-image scikit-learn ipython dlib  numexpr cython psutil pyzmq msgpack==0.5.6 pyopengl pyaudio cysignals git+https://github.com/zeromq/pyre  git+https://github.com/pupil-labs/PyAV git+https://github.com/pupil-labs/pyuvc git+https://github.com/pupil-labs/pyndsi  git+https://github.com/pupil-labs/pyglui  git+https://github.com/pupil-labs/nslr git+https://github.com/pupil-labs/nslr-hmm
+
+#OPENCV
+cd ~/
+mkdir OPENCV
+cd OPENCV
+cwd=$(pwd)
+git clone https://github.com/opencv/opencv.git
+git checkout 4.1.0
+
+git clone https://github.com/opencv/opencv_contrib.git
+git checkout 4.1.0
+
+cd opencv
+mkdir build
+cd build
+
+
