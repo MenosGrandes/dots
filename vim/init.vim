@@ -20,6 +20,7 @@ endif
     Plug 'scrooloose/nerdTree'
     Plug 'nathanaelkane/vim-indent-guides'
     Plug 'machakann/vim-sandwich'
+	Plug 'takac/vim-hardtime'									
 " Initialize plugin system
     call plug#end()
 " colors
@@ -47,3 +48,22 @@ endif
 	map <C-l> <C-w>l
 " Vim sandwitch
     let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+set wildmenu
+set laststatus=2
+set tabstop=8
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set hlsearch
+"Whitespaces
+autocmd BufWritePre * :%s/\s\+$//e
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
+"white chars
+set list
+set listchars=tab:›\ ,eol:¬,trail:⋅
+set clipboard+=unnamed
+set guicursor=
+" Workaround some broken plugins which set guicursor indiscriminately.
+autocmd OptionSet guicursor noautocmd set guicursor=
+set ignorecase
