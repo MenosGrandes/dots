@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-
+project(boost_tests)
 FIND_PACKAGE(PythonInterp)
 if (PYTHONINTERP_FOUND)
     if (UNIX AND NOT APPLE)
@@ -37,3 +37,4 @@ INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS} ${PYTHON_INCLUDE_DIRS})
 LINK_LIBRARIES(${Boost_LIBRARIES} ${PYTHON_LIBRARIES}) # Deprecated but so convenient!
 
 ADD_SUBDIRECTORY(01-HelloWorld)
+ADD_SUBDIRECTORY(01-HelloWorldCpp)
