@@ -1,0 +1,11 @@
+{
+    "python.jediEnabled":true,
+    "python.linting.pylintEnabled":false,
+    "python.linting.flake8Enabled":true,
+    "python.formatting.provider": "autopep8",
+    "diagnostics.signOffset":999999,
+    "diagnostics.checkCurrentLine":true
+  }
+
+
+
