@@ -15,3 +15,6 @@ cd build
 cmake ..
 make
 make test
+cd ..
+rm -rf build
+rm -rf boost_1_72_0*
