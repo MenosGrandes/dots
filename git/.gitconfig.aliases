@@ -1,0 +1,13 @@
+[alias]
+    d = difftool
+    changedFiles = diff HEAD^..HEAD --name-only
+    l1 = log -1
+    updateMaster ="!git stash && git checkout master && git fetch -p && git pull -r"
+    ca = commit --amend
+    cane = commit --amend --no-edit
+    caa = commit -a --amend
+    caane = commit -a --amend --no-edit
+    cadd = commit -a
+    f = fetch -p
+    p ="!f() { git push origin HEAD:refs/for/$1; }; f"
+    rebaseToMaster = "!f() { commit=$(git log -1 --pretty=format:%h) && git updateMaster && git checkout $commit &&  git rebase origin/master; }; f"

@@ -1,0 +1,1 @@
+git config --global include.path "~/.gitconfig.aliases"
