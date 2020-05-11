@@ -63,7 +63,7 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
 "white chars
 set list
-set listchars=tab:›\ ,eol:¬,trail:⋅
+set listchars=tab:>-,eol:$,trail:~
 set clipboard+=unnamed
 set guicursor=
 " Workaround some broken plugins which set guicursor indiscriminately.
