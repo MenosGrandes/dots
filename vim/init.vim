@@ -9,9 +9,7 @@ endif
 if ! filereadable(expand(plugLocation))
     echo "Downloading junegunn/vim-plug to manage plugins..."
     let plugDir = trim(plugLocation,'/plug.vim')
-    echo plugDir
-    call mkdir(plugDir, "p")
-    execute '!curl -fLo ' . plugLocation .' https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim '
+    execute '!curl -fLo ' . plugLocation .' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim '
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 syntax on
