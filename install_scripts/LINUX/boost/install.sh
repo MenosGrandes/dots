@@ -20,5 +20,5 @@ cmake ..
 make
 make test
 cd ..
-rm -rf build
-rm -rf boost_1_72_0*
+sudo rm -rf build
+sudo rm -rf boost_1_72_0*
