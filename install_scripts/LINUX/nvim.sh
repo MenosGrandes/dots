@@ -38,19 +38,22 @@ PYTHON_PACKAGES="\
 	scipy \
 	"
 
-apt-get purge vim* --assume-yes
-apt-get install $PACKAGES --assume-yes
+TEMP_USER=$1
+USER_HOME=/home/$TEMP_USER
+mkdir -p $USER_HOME/.config/nvim 
 
-git clone https://github.com/neovim/neovim.git
+apt-get -qq purge vim* --assume-yes 
+apt-get -qq install $PACKAGES --assume-yes
+
+git clone -q https://github.com/neovim/neovim.git $USER_HOME/dots
 cd neovim/
 git checkout stable
-make CMAKE_BUILD_TYPE=Release
-make install
-curl -sL https://deb.nodesource.com/setup_13.x | bash - && apt-get install -y -qq nodejs && npm install -g neovim 
-python3 -m pip install --user $PYTHON_PACKAGES
-mkdir -p ~/.config/nvim 
-mv  ~/dots/vim/init.vim ~/.config/nvim/
-mv  ~/dots/vim/coc-settings.json ~/.config/nvim/
+make -s CMAKE_BUILD_TYPE=Release 
+make -s install
+curl -sL https://deb.nodesource.com/setup_12.x | bash - && apt-get install -y -qq nodejs && npm install -g neovim 
+python3 -m pip install --user -q $PYTHON_PACKAGES 
+mv  $USER_HOME/dots/vim/init.vim $USER_HOME/.config/nvim/
+mv  $USER_HOME/dots/vim/coc-settings.json $USER_HOME/.config/nvim/
 nvim +PlugInstall +qall
 mkdir -p /root/.config/coc/extensions
 cd /root/.config/coc/extensions
