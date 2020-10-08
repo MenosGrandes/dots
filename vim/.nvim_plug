@@ -1,0 +1,30 @@
+"Only for NEOVIM
+if( has('win32'))
+    let plugLocation=expand('$LOCALAPPDATA/nvim/autoload/plug.vim')
+    echo 'Windows'
+elseif  (has('unix'))
+    let plugLocation=expand('~/.config/nvim/autoload/plug.vim')
+    echo 'Unix'
+endif
+if ! filereadable(expand(plugLocation))
+    echo "Downloading junegunn/vim-plug to manage plugins..."
+    let plugDir = trim(plugLocation,'/plug.vim')
+    echo plugDir
+    call mkdir(plugDir, "p")
+    execute '!curl -fLo ' . plugLocation .' https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim '
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+syntax on
+call plug#begin('~/.vim/plugged')
+Plug 'dracula/vim'
+Plug 'scrooloose/nerdTree'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'machakann/vim-sandwich'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'takac/vim-hardtime'
+Plug 'junegunn/fzf'
+" Initialize plugin system
+call plug#end()
+" colors
+colorscheme dracula
+color dracula

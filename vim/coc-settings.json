@@ -3,8 +3,12 @@
     "python.linting.pylintEnabled":false,
     "python.linting.flake8Enabled":true,
     "python.formatting.provider": "autopep8",
-    "diagnostics.signOffset":999999,
-    "diagnostics.checkCurrentLine":true
+    "diagnostic.signOffset":999999,
+    "python.linting.flake8Args": [
+        "--ignore=E501"
+    ],
+    "diagnostic.checkCurrentLine": true,
+    "python.formatting.autopep8Args": ["--max-line-length=100"]
   }
 
 
