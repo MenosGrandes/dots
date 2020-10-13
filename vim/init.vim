@@ -1,6 +1,12 @@
-source ~/.config/nvim/.nvim_coc_config
-source ~/.config/nvim/.nvim_plug
-source ~/.config/nvim/.nvim_nerdtree
+function! SourceIfExists(file)
+  if filereadable(expand(a:file))
+    exe 'source' a:file
+  endif
+endfunction
+
+call SourceIfExists("~/config/nvim/.nvim_coc_config")
+call SourceIfExists("~/config/nvim/.nvim_plug")
+call SourceIfExists("~/config/nvim/.nvim_nerdtree")
 " colors
 colorscheme dracula
 color dracula
