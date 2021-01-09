@@ -4,9 +4,9 @@ function! SourceIfExists(file)
   endif
 endfunction
 
-call SourceIfExists("~/config/nvim/.nvim_coc_config")
-call SourceIfExists("~/config/nvim/.nvim_plug")
-call SourceIfExists("~/config/nvim/.nvim_nerdtree")
+call SourceIfExists("~/.config/nvim/.nvim_coc_config")
+call SourceIfExists("~/.config/nvim/.nvim_plug")
+call SourceIfExists("~/.config/nvim/.nvim_nerdtree")
 " colors
 colorscheme dracula
 color dracula

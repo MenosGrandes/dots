@@ -42,21 +42,26 @@ TEMP_USER=$1
 USER_HOME=/home/$TEMP_USER
 mkdir -p $USER_HOME/.config/nvim
 
-apt-get -qq purge vim* --assume-yes
-apt-get -qq install $PACKAGES --assume-yes
+echo -e "Remove vim and install build tools for nvim"
+sudo apt-get -qq purge vim* --assume-yes
+sudo apt-get -qq install $PACKAGES --assume-yes
+echo -e "Done!"
 
-git clone -q https://github.com/neovim/neovim.git $USER_HOME/dots
+git clone -q https://github.com/neovim/neovim.git --quiet
 cd neovim/
 git checkout stable
-make -s CMAKE_BUILD_TYPE=Release
-make -s install
-curl -sL https://deb.nodesource.com/setup_12.x | bash - && apt-get install -y -qq nodejs && npm install -g neovim
+make -s CMAKE_BUILD_TYPE=Release > /dev/null
+sudo make -s install >/dev/null
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && sudo apt-get install -y -qq nodejs && sudo npm install -g neovim
 python3 -m pip install --user -q $PYTHON_PACKAGES
-mv -t $USER_HOME/.config/nvim/ $USER_HOME/dots/vim/*
+parentdir="$(dirname "$(pwd)")"
+grantParentDir="$(dirname "$parentdir")"
+ggParentDir="$(dirname "$grantParentDir")/vim/."
+cp -a $ggParentDir $USER_HOME/.config/nvim
 nvim +PlugInstall +qall
-mkdir -p /root/.config/coc/extensions # why is it root?...
-cd /root/.config/coc/extensions #same as above
+mkdir -p $USER_HOME/.config/coc/extensions
+cd $_
 echo '{"dependencies":{}}'> package.json
-npm install coc-python --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
+sudo npm install coc-python --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
 nvim +CocUpdateSync +qall
-rm -rf neovim
+sudo rm -rf neovim
