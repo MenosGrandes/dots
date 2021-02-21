@@ -17,11 +17,12 @@ endif
 syntax on
 call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim'
+Plug 'michaeljsmith/vim-indent-object'
 Plug 'scrooloose/nerdTree'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'machakann/vim-sandwich'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'takac/vim-hardtime'
+Plug 'thaerkh/vim-indentguides'
 Plug 'junegunn/fzf'
 " Initialize plugin system
 call plug#end()
