@@ -23,6 +23,15 @@ Plug 'machakann/vim-sandwich'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'takac/vim-hardtime'
 Plug 'thaerkh/vim-indentguides'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+" tabular plugin is used to format tables
+Plug 'godlygeek/tabular'
+" JSON front matter highlight plugin
+Plug 'elzr/vim-json'
+Plug 'plasticboy/vim-markdown'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc'
 Plug 'junegunn/fzf'
 " Initialize plugin system
 call plug#end()
