@@ -34,6 +34,8 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'junegunn/fzf'
 " Initialize plugin system
+Plug 'itchyny/lightline.vim'
+Plug 'jremmen/vim-ripgrep'
 call plug#end()
 " colors
 colorscheme dracula

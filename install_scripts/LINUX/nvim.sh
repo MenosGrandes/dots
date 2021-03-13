@@ -38,7 +38,7 @@ PYTHON_PACKAGES="\
 	scipy \
 	"
 
-TEMP_USER=$1
+TEMP_USER=$USER
 USER_HOME=/home/$TEMP_USER
 mkdir -p $USER_HOME/.config/nvim
 
