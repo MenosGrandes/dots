@@ -1,11 +1,11 @@
 "Only for NEOVIM
 if( has('win32'))
-    let plugLocation=expand('$LOCALAPPDATA/nvim/autoload/plug.vim')
-    echo 'Windows'
+let plugLocation=expand('$LOCALAPPDATA/nvim/autoload/plug.vim')
+echo 'Windows'
 elseif  (has('unix'))
-    let plugLocation=expand('~/.config/nvim/autoload/plug.vim')
-    echo 'Unix'
-endif
+let plugLocation=expand('~/.config/nvim/autoload/plug.vim')
+echo 'Unix'
+    endif
 if ! filereadable(expand(plugLocation))
     echo "Downloading junegunn/vim-plug to manage plugins..."
     let plugDir = trim(plugLocation,'/plug.vim')
@@ -13,30 +13,31 @@ if ! filereadable(expand(plugLocation))
     call mkdir(plugDir, "p")
     execute '!curl -fLo ' . plugLocation .' --create-dir https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim '
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-syntax on
-call plug#begin('~/.vim/plugged')
-Plug 'dracula/vim'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'scrooloose/nerdTree'
-Plug 'machakann/vim-sandwich'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'takac/vim-hardtime'
-Plug 'thaerkh/vim-indentguides'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-" tabular plugin is used to format tables
-Plug 'godlygeek/tabular'
-" JSON front matter highlight plugin
-Plug 'elzr/vim-json'
-Plug 'plasticboy/vim-markdown'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'junegunn/fzf'
-" Initialize plugin system
-Plug 'itchyny/lightline.vim'
-Plug 'jremmen/vim-ripgrep'
+    endif
+    syntax on
+    call plug#begin('~/.vim/plugged')
+    Plug 'dracula/vim'
+    Plug 'michaeljsmith/vim-indent-object'
+    Plug 'scrooloose/nerdTree'
+    Plug 'machakann/vim-sandwich'
+    Plug 'takac/vim-hardtime'
+    Plug 'thaerkh/vim-indentguides'
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
+    " tabular plugin is used to format tables
+    Plug 'godlygeek/tabular'
+    " JSON front matter highlight plugin
+    Plug 'elzr/vim-json'
+    Plug 'plasticboy/vim-markdown'
+    Plug 'vim-pandoc/vim-pandoc-syntax'
+    Plug 'vim-pandoc/vim-pandoc'
+    Plug 'junegunn/fzf'
+    " Initialize plugin system
+    Plug 'itchyny/lightline.vim'
+    Plug 'jremmen/vim-ripgrep'
+    Plug 'dense-analysis/ale'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
-" colors
-colorscheme dracula
-color dracula
+    " colors
+    colorscheme dracula
+    color dracula

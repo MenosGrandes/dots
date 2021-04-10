@@ -1,13 +1,14 @@
 function! SourceIfExists(file)
-  if filereadable(expand(a:file))
-    exe 'source' a:file
-  endif
+    if filereadable(expand(a:file))
+        exe 'source' a:file
+    endif
 endfunction
 
-call SourceIfExists("~/.config/nvim/.nvim_coc_config")
+" call SourceIfExists("~/.config/nvim/.nvim_coc_config")
 call SourceIfExists("~/.config/nvim/.nvim_plug")
 call SourceIfExists("~/.config/nvim/.nvim_nerdtree")
 call SourceIfExists("~/.config/nvim/.nvim_markdown")
+call SourceIfExists("~/.config/nvim/.nvim_py")
 " colors
 colorscheme dracula
 color dracula
@@ -50,5 +51,3 @@ autocmd OptionSet guicursor noautocmd set guicursor=
 set ignorecase
 let g:hardtime_default_on = 1
 command! Config execute "e $MYVIMRC"
-
-set rtp+=/afs/seli.gic.ericsson.se/app/vbuild/RHEL6-x86_64/fzf/0.21.1/bin/fzf
