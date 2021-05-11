@@ -2,7 +2,8 @@
 set -x
 sudo apt update -y -qq
 sudo apt upgrade -y -qq
-sudo apt install xclip build-essential ninja-build cmake git kdiff3 tmux fzf ripgrep -qq -y
+sudo apt install curl xclip build-essential ninja-build cmake git kdiff3 tmux -qq -y
+bash ./installRgFZFFromSource.sh
 bash ./nvim.sh $USER
 pushd $(pwd)
 cd git
