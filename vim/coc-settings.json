@@ -8,8 +8,23 @@
         "--ignore=E501"
     ],
     "diagnostic.checkCurrentLine": true,
-    "python.formatting.autopep8Args": ["--max-line-length=100"]
+    "python.formatting.autopep8Args": ["--max-line-length=100"],
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+      "rootPatterns": [".ccls-root", "compile_commands.json"],
+      "initializationOptions": {
+        "cache": {
+          "directory": ".ccls-cache"
+        },
+        "client": {
+          "snippetSupport": true
+        }
+      }
+    }
   }
+}
 
 
 

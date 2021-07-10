@@ -13,3 +13,4 @@ bash install_tmux.sh
 cd ../python
 bash virtualenvwrapper_config.sh
 popd
+bash installCCLS.sh

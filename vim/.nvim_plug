@@ -35,8 +35,9 @@ if ! filereadable(expand(plugLocation))
     " Initialize plugin system
     Plug 'itchyny/lightline.vim'
     Plug 'jremmen/vim-ripgrep'
-    Plug 'dense-analysis/ale'
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'cdelledonne/vim-cmake'
+    Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
 call plug#end()
     " colors
     colorscheme dracula
