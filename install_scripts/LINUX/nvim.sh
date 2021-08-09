@@ -57,13 +57,15 @@ NPM_PACKAGES="\
     git checkout stable
     make -s CMAKE_BUILD_TYPE=Release > /dev/null
     sudo make -s install >/dev/null
+
     curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && sudo apt-get install -y -qq nodejs
     sudo npm install -g $NPM_PACKAGES
     python3 -m pip install --user -q $PYTHON_PACKAGES
-    parentdir="$(dirname "$(pwd)")"
-    grantParentDir="$(dirname "$parentdir")"
-    ggParentDir="$(dirname "$grantParentDir")/vim/."
-    cp -a $ggParentDir $USER_HOME/.config/nvim
-    nvim +PlugInstall +qall
-    cd $_
+   
+   # parentdir="$(dirname "$(pwd)")"
+    #grantParentDir="$(dirname "$parentdir")"
+    #ggParentDir="$(dirname "$grantParentDir")/vim/."
+    #cp -a $ggParentDir $USER_HOME/.config/nvim
+    #nvim +PlugInstall +qall
+    #cd $_
     sudo rm -rf neovim
