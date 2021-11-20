@@ -20,7 +20,6 @@ if ! filereadable(expand(plugLocation))
     Plug 'michaeljsmith/vim-indent-object'
     Plug 'scrooloose/nerdTree'
     Plug 'machakann/vim-sandwich'
-    Plug 'takac/vim-hardtime'
     Plug 'thaerkh/vim-indentguides'
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
@@ -35,9 +34,20 @@ if ! filereadable(expand(plugLocation))
     " Initialize plugin system
     Plug 'itchyny/lightline.vim'
     Plug 'jremmen/vim-ripgrep'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'cdelledonne/vim-cmake'
     Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh' }
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+    Plug 'sheerun/vim-polyglot'
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'folke/trouble.nvim'
+    Plug 'folke/lsp-colors.nvim'
+    Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
     " colors
     colorscheme dracula
