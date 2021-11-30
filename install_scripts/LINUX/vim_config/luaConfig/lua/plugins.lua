@@ -26,8 +26,8 @@ require('packer').startup(function()
   use 'machakann/vim-sandwich'
   use 'thaerkh/vim-indentguides'
   use 'SirVer/ultisnips'
-  use 'honza/vim-snippets'
   use 'godlygeek/tabular'
+  use "rafamadriz/friendly-snippets"
   use 'elzr/vim-json'
   use 'plasticboy/vim-markdown'
   use 'vim-pandoc/vim-pandoc-syntax'
