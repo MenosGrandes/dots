@@ -7,7 +7,7 @@ local on_attach = function(client, bufnr)
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
   --Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  -- buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
   local opts = { noremap=true, silent=true }
@@ -53,21 +53,9 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
--- Add additional capabilities supported by nvim-cmp
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-local nvim_lsp = require('lspconfig')
--- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'ccls', 'pyright'}
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
-end
 
 -- Set completeopt to have a better completion experience
-vim.opt.completeopt = 'menuone,noselect'
+-- vim.opt.completeopt = 'menuone,longest'
 
 -- luasnip setup
 local luasnip = require 'luasnip'
@@ -113,12 +101,37 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-    { name = 'buffer' },
-    { name = 'path' },
-    { name = 'cmdline' },
+    --{ name = 'buffer' },
+    --{ name = 'path' },
+    --{ name = 'cmdline' },
     { name = 'nvim_lua' },
   },
 }
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' }
+  }
+})
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})
+
+-- Add additional capabilities supported by nvim-cmp
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+local nvim_lsp = require('lspconfig')
+-- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+local servers = { 'ccls', 'pyright'}
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+end
 ----------------- EFM config -----------------
 local black = require "efm/black"
 local flake8 = require "efm/flake8"
