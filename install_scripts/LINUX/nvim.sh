@@ -58,11 +58,9 @@ NPM_PACKAGES="\
     make -s CMAKE_BUILD_TYPE=Release > /dev/null
     sudo make -s install >/dev/null
 
-    #curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && sudo apt-get install -y -qq nodejs
-    #sudo npm install -g $NPM_PACKAGES
-    #python3 -m pip install --user -q $PYTHON_PACKAGES
+    curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && sudo apt-get install -y -qq nodejs
+    sudo npm install -g $NPM_PACKAGES
+    python3 -m pip install --user -q $PYTHON_PACKAGES
 
-    cp -a vim_config $USER_HOME/.config/nvim
-    nvim +PlugInstall +qall
     cd $_
     sudo rm -rf neovim

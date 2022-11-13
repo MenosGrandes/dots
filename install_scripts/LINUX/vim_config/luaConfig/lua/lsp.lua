@@ -43,7 +43,6 @@ require("trouble").setup {
 		hint = "hint",
 		information = "info"
 	},
-	use_lsp_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
 }
 require'nvim-treesitter.configs'.setup {
 	ensure_installed = {"cpp","python","c","bash","dockerfile","cmake","html","json","json5","latex","lua","regex","vim","yaml"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -121,8 +120,8 @@ cmp.setup.cmdline(':', {
 	})
 
 -- Add additional capabilities supported by nvim-cmp
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilites
 local nvim_lsp = require('lspconfig')
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local servers = { 'ccls', 'pyright' ,'html', 'tsserver'}
@@ -223,3 +222,12 @@ require "lspconfig".efm.setup {
 
 	}
 }
+
+
+vim.diagnostic.config({
+		  virtual_text = false
+		})
+
+	-- Show line diagnostics automatically in hover window
+vim.o.updatetime = 250
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
