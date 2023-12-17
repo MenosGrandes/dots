@@ -37,7 +37,6 @@ require('packer').startup(function()
   use 'jremmen/vim-ripgrep'
   use 'cdelledonne/vim-cmake'
   use {'sakhnik/nvim-gdb', run = ':!./install.sh' }
-  use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
@@ -54,4 +53,9 @@ require('packer').startup(function()
     requires = { {'nvim-lua/plenary.nvim'} }
   }
   use 'mfussenegger/nvim-lint'
+  use 'windwp/nvim-ts-autotag'
+
+  use('jose-elias-alvarez/null-ls.nvim')
+  use('MunifTanjim/prettier.nvim')
+
 end)

@@ -29,7 +29,6 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 	buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 	buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-	buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
 end
 require("trouble").setup {
@@ -45,14 +44,14 @@ require("trouble").setup {
 	},
 }
 require'nvim-treesitter.configs'.setup {
-	ensure_installed = {"cpp","python","c","bash","dockerfile","cmake","html","json","json5","latex","lua","regex","vim","yaml"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+	ensure_installed = {"cpp","python","c","bash","dockerfile","cmake","html","json","json5","latex","lua","regex","vim","yaml","svelte"}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 	sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
 	highlight = {
 		enable = true,              -- false will disable the whole extension
 		additional_vim_regex_highlighting = false,
 	},
 }
-
+require('nvim-ts-autotag').setup()
 -- Set completeopt to have a better completion experience
 -- vim.opt.completeopt = 'menuone,longest'
 
@@ -124,104 +123,15 @@ cmp.setup.cmdline(':', {
 capabilities = require('cmp_nvim_lsp').default_capabilites
 local nvim_lsp = require('lspconfig')
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'ccls', 'pyright' ,'html', 'tsserver'}
+local servers = { 'ccls', 'pyright', 'tsserver' ,'svelte'}
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup {
 		on_attach = on_attach,
 		capabilities = capabilities,
 	}
 end
------------------ EFM config -----------------
--- Below is a variable in wich you specify where you have prettier installed
--- make sure you update the formatCommand path to the location where you have installed prettier
-local prettier = {
-	formatCommand = os.getenv('HOME') .. '/.nvm/versions/node/v17.5.0/bin/prettier ${--config-precedence:configPrecedence} ${--tab-width:tabWidth} ${--single-quote:singleQuote} ${--trailing-comma:trailingComma} --stdin-filepath ${INPUT}',
-	formatStdin = true
-}
 
--- Below is a variable in wich you specify where eslint_d is installed, you dont need to change this
--- as it should be the same for you.
-local eslint = {
-	lintCommand = "eslint_d -f unix --stdin",
-	lintIgnoreExitCode = true,
-	lintStdin = true
-}
 
--- Below you can set some formatting options for prettier
--- Format options for prettier
-local format_options_prettier = {
-	tabWidth = 2,
-	singleQuote = true,
-	trailingComma = 'all',
-	configPrecedence = 'prefer-file'
-}
-
--- Below is a list of languages and a list of servers you want per language
--- so for typescript we have prettier and eslint for example
-local languages = {
-	typescript = {prettier, eslint},
-	javascript = {prettier, eslint},
-	typescriptreact = {prettier, eslint},
-	javascriptreact = {prettier, eslint},
-	yaml = {prettier},
-	json = {prettier},
-	html = {prettier},
-	scss = {prettier},
-	css = {prettier},
-	markdown = {prettier},
-	python = {black, flake8}
-}
-local black = require "efm/black"
-local flake8 = require "efm/flake8"
-require "lspconfig".efm.setup {
-	on_attach = on_attach,
-
-	filetypes = vim.tbl_keys(languages),    
-	-- Set some extra settings
-	init_options = {
-		-- Enable document formatting
-		documentFormatting = true,
-
-		-- Enable hover information functionality
-		hover = true,
-
-		-- Enable the use of symbols
-		documentSymbol = true,
-
-		-- Enable the use of code actions
-		codeAction = true,
-
-		-- Enable autocompletion popup
-		completion = true
-	},
-	settings = {
-		-- This is the location where error messages wil be written to
-		-- this is nice for debugging your language server
-		log_file = '~/.config/efm.log',
-
-		-- These are the paths efm will look for eslint settings and prettier settings
-		-- inside a project you are working on
-		rootMarkers = {
-			".git/",
-			".lua-format",
-			".eslintrc.cjs",
-			".eslintrc",
-			".eslintrc.json",
-			".eslintrc.js",
-			".prettierrc",
-			".prettierrc.js",
-			".prettierrc.json",
-			".prettierrc.yml",
-			".prettierrc.yaml",
-			".prettier.config.js",
-			".prettier.config.cjs",
-		},
-
-		-- Setting the languages
-		languages = languages
-
-	}
-}
 
 
 vim.diagnostic.config({
