@@ -1,5 +1,4 @@
-require('plugins')
-require('common')
-require('lsp')
-require('web_dev')
-require('null_ls')
+require("common.navigation")
+require("common.view_config")
+
+require("config.lazy")
