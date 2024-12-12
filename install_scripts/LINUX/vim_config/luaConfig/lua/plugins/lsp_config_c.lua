@@ -36,14 +36,19 @@ return {
                 local capabilities = require("cmp_nvim_lsp").default_capabilities()
                 local nvim_lsp = require('lspconfig')
                 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-                local servers = { 'pyright', 'html', 'tsserver', 'erlangls', 'bashls' }
+                local servers = { 'pyright', 'html', 'ts_ls', 'erlangls', 'bashls', 'lemminx', 'jsonls', 'taplo' }
                 for _, lsp in ipairs(servers) do
                         nvim_lsp[lsp].setup {
                                 on_attach = on_attach,
                                 capabilities = capabilities,
                         }
                 end
-
+                nvim_lsp["clangd"].setup {
+                        capabilities = capabilities,
+                        flags = { allow_incremental_sync = true, debounce_text_changes = 500 },
+                        cmd = { "clangd", '--clang-tidy', '--background-index', '--all-scopes-completion', '--header-insertion=never', '--cross-file-rename' },
+                        on_attach = on_attach,
+                }
                 require 'lspconfig'.lua_ls.setup {
                         on_init = function(client)
                                 local path = client.workspace_folders[1].name
