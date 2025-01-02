@@ -1,2 +1,2 @@
-echo 'PATH=~/.bin/:$PATH' >> ~/.bashrc
+echo 'PATH=~/bin/:$PATH' >> ~/.bashrc
 

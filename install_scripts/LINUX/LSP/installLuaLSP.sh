@@ -1,1 +1,3 @@
-wget https://github.com/LuaLS/lua-language-server/releases/download/3.13.5/lua-language-server-3.13.5-linux-x64.tar.gz -C ~/.bin/
+asdf plugin add lua-language-server
+asdf install lua-language-server latest
+asdf global lua-language-server latest
