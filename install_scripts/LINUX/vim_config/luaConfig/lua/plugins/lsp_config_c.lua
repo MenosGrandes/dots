@@ -36,7 +36,7 @@ return {
                 local capabilities = require("cmp_nvim_lsp").default_capabilities()
                 local nvim_lsp = require('lspconfig')
                 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-                local servers = { 'pyright', 'html', 'ts_ls', 'erlangls', 'bashls', 'lemminx', 'jsonls', 'taplo' }
+                local servers = { 'pyright', 'html', 'ts_ls', 'erlangls', 'bashls', 'lemminx', 'jsonls', 'taplo', 'gopls' }
                 for _, lsp in ipairs(servers) do
                         nvim_lsp[lsp].setup {
                                 on_attach = on_attach,
